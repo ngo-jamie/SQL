@@ -90,7 +90,7 @@ CASE
   WHEN avg_employee_tenure >= 7 THEN "Great"
   WHEN avg_employee_tenure >= 6.6 THEN "Good"
   ELSE "Decent"
- END AS work_environment
- FROM fortune_companies
- WHERE industry = 'Energy'
- ORDER BY avg_employee_tenure ASC;
+END AS work_environment
+FROM fortune_companies
+WHERE industry = 'Energy'
+ORDER BY avg_employee_tenure ASC;
