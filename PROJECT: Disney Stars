@@ -1,5 +1,6 @@
-#In this project, I make my own table with a small set of chosen "Disney stars", as well as more tables about movies/shows they've starred in and join them together.
+#In this project, I make my own table with a small set of chosen "Disney stars", as well as another table about movies/shows they've starred in and join them together.
 #My data answers the questions of how old these famous "Disney stars" are in 2023 as well as a few sources of television they've acted in, along with their respective release date.
+#My data can also answer who has been in the same film or series together.
 
 CREATE TABLE disney_stars (id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT,
@@ -9,7 +10,7 @@ INSERT INTO disney_stars (name, age)
   VALUES ("Zac Efron", 35)
 ;
 INSERT INTO disney_stars (name, age)
-  VALUES ("Cameron Boyce", 20)
+  VALUES ("Jason Earles", 46)
 ;
 INSERT INTO disney_stars (name, age)
   VALUES ("Demi Lovato", 31)
@@ -30,7 +31,7 @@ INSERT INTO disney_stars (name, age)
   VALUES ("Sabrina Carpenter", 24)
 ;
 INSERT INTO disney_stars (name, age)
-  VALUES ("Ross Lynch", 27)
+  VALUES ("Ashley Tisdale", 38)
 ;
 INSERT INTO disney_stars (name, age)
   VALUES ("Debby Ryan", 30)
@@ -45,9 +46,9 @@ INSERT INTO television (person_id, movie_or_show, year)
 INSERT INTO television (person_id, movie_or_show, year)
   VALUES (1, "The Greatest Showman", 2017);
 INSERT INTO television (person_id, movie_or_show, year)
-  VALUES (2, "Jessie", 2011);
+  VALUES (2, "Hannah Montana", 2006);
 INSERT INTO television (person_id, movie_or_show, year)
-  VALUES (2, "Descendants", 2015);
+  VALUES (2, "Kickin' It", 2011);
 INSERT INTO television (person_id, movie_or_show, year)
   VALUES (3, "Camp Rock", 2008);
 INSERT INTO television (person_id, movie_or_show, year)
@@ -73,9 +74,9 @@ INSERT INTO television (person_id, movie_or_show, year)
 INSERT INTO television (person_id, movie_or_show, year)
   VALUES (8, "Girl Meets World", 2014);
 INSERT INTO television (person_id, movie_or_show, year)
-  VALUES (9, "Austin & Ally", 2011);
+  VALUES (9, "HSM", 2008);
 INSERT INTO television (person_id, movie_or_show, year)
-  VALUES (9, "Teen Beach Movie", 2013);
+  VALUES (9, "The Suite Life on Deck", 2008);
 INSERT INTO television (person_id, movie_or_show, year)
   VALUES (10, "Jessie", 2011);
 INSERT INTO television (person_id, movie_or_show, year)
@@ -92,7 +93,7 @@ SELECT d.name, t.movie_or_show
 FROM disney_stars d
 JOIN television t
 ON d.id = t.person_id
-WHERE d.name = 'Cameron Boyce';
+WHERE d.name = 'Jason Earles';
 
 SELECT d.name, t.movie_or_show
 FROM disney_stars d
@@ -134,7 +135,7 @@ SELECT d.name, t.movie_or_show
 FROM disney_stars d
 JOIN television t
 ON d.id = t.person_id
-WHERE d.name = 'Ross Lynch';
+WHERE d.name = 'Ashley Tisdale';
 
 SELECT d.name, t.movie_or_show
 FROM disney_stars d
@@ -158,4 +159,4 @@ SELECT *
 FROM disney_stars d
 JOIN television t
 ON d.id = t.person_id
-WHERE t.movie_or_show = 'Jessie';
+WHERE t.movie_or_show = 'Hannah Montana';
