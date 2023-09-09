@@ -69,7 +69,7 @@ ORDER BY average_PTO_days asc;
 #Which companies have less than 5000 employees *and* revenue of at least $300 Billion?
 SELECT company_name, employees, revenue
 FROM fortune_companies
-WHERE employees <= 5000
+WHERE employees < 5000
 AND revenue >= 300;
 
 #Which company in the Telecommunications industry has the most revenue, and what's their revenue?
