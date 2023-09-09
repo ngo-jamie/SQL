@@ -1,6 +1,6 @@
 #In this project, I make my own table with a small set of chosen "Disney stars", as well as another table about movies/shows they've starred in and join them together.
 #My data answers the questions of how old these famous "Disney stars" are in 2023 as well as a few sources of television they've acted in, along with their respective release date.
-#Based on my data, it can also answer who has been in the same film or series together.
+#My data can also answer which films these actors have worked together in.
 
 CREATE TABLE disney_stars (id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT,
