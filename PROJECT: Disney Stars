@@ -1,0 +1,161 @@
+#In this project, I make my own table with a small set of chosen "Disney stars", as well as more tables about movies/shows they've starred in and join them together.
+#My data answers the questions of how old these famous "Disney stars" are in 2023 as well as a few sources of television they've acted in, along with their respective release date.
+
+CREATE TABLE disney_stars (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    age INTEGER);
+    
+INSERT INTO disney_stars (name, age)
+  VALUES ("Zac Efron", 35)
+;
+INSERT INTO disney_stars (name, age)
+  VALUES ("Cameron Boyce", 20)
+;
+INSERT INTO disney_stars (name, age)
+  VALUES ("Demi Lovato", 31)
+;
+INSERT INTO disney_stars (name, age)
+  VALUES ("Lindsay Lohan", 37)
+;
+INSERT INTO disney_stars (name, age)
+  VALUES ("Nick Jonas", 30)
+;
+INSERT INTO disney_stars (name, age)
+  VALUES ("Miley Cyrus", 30)
+;
+INSERT INTO disney_stars (name, age)
+  VALUES ("Cole Sprouse", 31)
+;
+INSERT INTO disney_stars (name, age)
+  VALUES ("Sabrina Carpenter", 24)
+;
+INSERT INTO disney_stars (name, age)
+  VALUES ("Ross Lynch", 27)
+;
+INSERT INTO disney_stars (name, age)
+  VALUES ("Debby Ryan", 30)
+;
+  
+CREATE TABLE television (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person_id INTEGER,
+    movie_or_show TEXT,
+    year INTEGER);
+INSERT INTO television (person_id, movie_or_show, year)
+  VALUES (1, "HSM", 2008);
+INSERT INTO television (person_id, movie_or_show, year)
+  VALUES (1, "The Greatest Showman", 2017);
+INSERT INTO television (person_id, movie_or_show, year)
+  VALUES (2, "Jessie", 2011);
+INSERT INTO television (person_id, movie_or_show, year)
+  VALUES (2, "Descendants", 2015);
+INSERT INTO television (person_id, movie_or_show, year)
+  VALUES (3, "Camp Rock", 2008);
+INSERT INTO television (person_id, movie_or_show, year)
+  VALUES (3, "Camp Rock 2", 2010);
+INSERT INTO television (person_id, movie_or_show, year)
+  VALUES (4, "The Parent Trap", 1998); 
+INSERT INTO television (person_id, movie_or_show, year)
+  VALUES (4, "Freaky Friday", 2003);
+INSERT INTO television (person_id, movie_or_show, year)
+  VALUES (5, "Camp Rock", 2008);
+INSERT INTO television (person_id, movie_or_show, year)
+  VALUES (5, "Camp Rock 2", 2010);
+INSERT INTO television (person_id, movie_or_show, year)
+  VALUES (6, "Hannah Montana", 2006); 
+INSERT INTO television (person_id, movie_or_show, year)
+  VALUES (6, "Bolt", 2008);
+INSERT INTO television (person_id, movie_or_show, year)
+  VALUES (7, "The Suite Life Movie", 2011);
+INSERT INTO television (person_id, movie_or_show, year)
+  VALUES (7, "The Suite Life on Deck", 2008);
+INSERT INTO television (person_id, movie_or_show, year)
+  VALUES (8, "Clouds", 2020);
+INSERT INTO television (person_id, movie_or_show, year)
+  VALUES (8, "Girl Meets World", 2014);
+INSERT INTO television (person_id, movie_or_show, year)
+  VALUES (9, "Austin & Ally", 2011);
+INSERT INTO television (person_id, movie_or_show, year)
+  VALUES (9, "Teen Beach Movie", 2013);
+INSERT INTO television (person_id, movie_or_show, year)
+  VALUES (10, "Jessie", 2011);
+INSERT INTO television (person_id, movie_or_show, year)
+  VALUES (10, "Radio Rebel", 2012);
+  
+
+SELECT d.name, t.movie_or_show
+FROM disney_stars d
+JOIN television t
+ON d.id = t.person_id
+WHERE d.name = 'Zac Efron';
+
+SELECT d.name, t.movie_or_show
+FROM disney_stars d
+JOIN television t
+ON d.id = t.person_id
+WHERE d.name = 'Cameron Boyce';
+
+SELECT d.name, t.movie_or_show
+FROM disney_stars d
+JOIN television t
+ON d.id = t.person_id
+WHERE d.name = 'Demi Lovato';
+
+SELECT d.name, t.movie_or_show
+FROM disney_stars d
+JOIN television t
+ON d.id = t.person_id
+WHERE d.name = 'Lindsay Lohan';
+
+SELECT d.name, t.movie_or_show
+FROM disney_stars d
+JOIN television t
+ON d.id = t.person_id
+WHERE d.name = 'Nick Jonas';
+
+SELECT d.name, t.movie_or_show
+FROM disney_stars d
+JOIN television t
+ON d.id = t.person_id
+WHERE d.name = 'Miley Cyrus';
+
+SELECT d.name, t.movie_or_show
+FROM disney_stars d
+JOIN television t
+ON d.id = t.person_id
+WHERE d.name = 'Cole Sprouse';
+
+SELECT d.name, t.movie_or_show
+FROM disney_stars d
+JOIN television t
+ON d.id = t.person_id
+WHERE d.name = 'Sabrina Carpenter';
+
+SELECT d.name, t.movie_or_show
+FROM disney_stars d
+JOIN television t
+ON d.id = t.person_id
+WHERE d.name = 'Ross Lynch';
+
+SELECT d.name, t.movie_or_show
+FROM disney_stars d
+JOIN television t
+ON d.id = t.person_id
+WHERE d.name = 'Debby Ryan';
+
+SELECT *
+FROM disney_stars d
+JOIN television t
+ON d.id = t.person_id
+WHERE t.movie_or_show LIKE 'Camp Rock%';
+
+SELECT *
+FROM disney_stars d
+JOIN television t
+ON d.id = t.person_id
+WHERE t.movie_or_show LIKE '%Suite Life%';
+
+SELECT *
+FROM disney_stars d
+JOIN television t
+ON d.id = t.person_id
+WHERE t.movie_or_show = 'Jessie';
