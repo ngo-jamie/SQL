@@ -60,3 +60,9 @@ AND length(orderid) = 6
 AND orderid <> 'Order ID'
 GROUP BY location
 HAVING COUNT(orderID) > 2;
+
+#10. How many of each type of headphone were sold in February?
+SELECT SUM(Quantity) AS quantity, product
+FROM BIT_DB.FebSales
+WHERE product LIKE '%headphones%'
+GROUP BY product;
