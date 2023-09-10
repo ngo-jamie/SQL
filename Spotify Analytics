@@ -78,3 +78,16 @@ CASE
 END AS Top_50
 FROM BIT_DB.Spotifydata
 ORDER BY popularity DESC;
+
+#Calculating the average popularity for artists.
+WITH popularity_average_CTE AS (
+SELECT s.artist_name,
+AVG(s.popularity) AS average_popularity
+FROM SpotifyData s
+GROUP BY s.artist_name
+)
+SELECT artist_name
+,average_popularity
+,'Top Star' AS tag
+FROM popularity_average_CTE
+WHERE average_popularity >= 90;
