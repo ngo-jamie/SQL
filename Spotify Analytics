@@ -69,7 +69,7 @@ SELECT artist_name, track_name, MAX(duration_ms) AS longest_song_ms
 FROM BIT_DB.Spotifydata
 ORDER BY longest_song_ms;
 
-#To sum it all up, I labeled songs based on their popularity as "Top Hit", "Popular", and "Pretty Good".
+#To sum it all up, I labeled the songs based on their popularity as "Top Hit", "Popular", and "Pretty Good".
 SELECT track_name, popularity,
 CASE
     WHEN popularity >= 90 THEN 'Top Hit'
