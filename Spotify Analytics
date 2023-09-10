@@ -23,5 +23,58 @@ tempo decimal(6,3) NOT NULL,
 duration_ms integer NOT NULL,
 time_signature integer NOT NULL )
 
-#Next,I inserted the Spotify Data .csv into the table.
-# I then explored the data using the following SQL.
+#Next, I inserted the Spotify Data .csv into the table.
+#I then explored the data using the following SQL.
+
+#First, I determined the avg popularity, danceability, and energy by artist and track.
+SELECT artist_name
+,track_name
+,AVG(popularity)
+,AVG(danceability)
+,AVG(energy)
+FROM BIT_DB.Spotifydata
+GROUP BY artist_name, track_name;
+
+#Next, I determined who the Top 10 artists are by popularity.
+SELECT artist_name, popularity
+FROM BIT_DB.Spotifydata
+ORDER BY popularity DESC
+LIMIT 10;
+
+#I also determined the popularity of tracks from lowest to highest.
+SELECT track_name, popularity
+FROM BIT_DB.Spotifydata
+ORDER by popularity ASC;
+
+#Then, I determined which artists appeared more than once.
+SELECT artist_name, COUNT(track_name) AS total_tracks
+FROM BIT_DB.Spotifydata
+GROUP BY artist_name
+HAVING total_tracks > 1
+ORDER BY total_tracks DESC;
+
+#I also determined the top 5 most danceable songs.
+SELECT track_name, danceability
+FROM BIT_DB.Spotifydata
+ORDER BY danceability DESC
+LIMIT 5;
+
+#I then determined which songs have high energy and valence.
+SELECT track_name, energy, valence
+FROM BIT_DB.Spotifydata
+WHERE energy >= 0.700 AND valence >= 0.700;
+
+#I also determined which artist had the longest song in the database.
+SELECT artist_name, track_name, MAX(duration_ms) AS longest_song_ms
+FROM BIT_DB.Spotifydata
+ORDER BY longest_song_ms;
+
+#To sum it all up, I labeled songs based on their popularity as "Top Hit", "Popular", and "Pretty Good".
+SELECT track_name, popularity,
+CASE
+    WHEN popularity >= 90 THEN 'Top Hit'
+    WHEN popularity >= 75 THEN 'Popular'
+    ELSE 'Pretty Good'
+END AS Top_50
+FROM BIT_DB.Spotifydata
+ORDER BY popularity DESC;
