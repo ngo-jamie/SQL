@@ -79,7 +79,7 @@ END AS Top_50
 FROM BIT_DB.Spotifydata
 ORDER BY popularity DESC;
 
-#Calculating the average popularity for artists.
+#Calculating the average popularity for artists and labeling them accordingly.
 WITH popularity_average_CTE AS (
 SELECT s.artist_name,
 AVG(s.popularity) AS average_popularity
