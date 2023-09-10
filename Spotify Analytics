@@ -35,31 +35,31 @@ SELECT artist_name
 FROM BIT_DB.Spotifydata
 GROUP BY artist_name, track_name;
 
-#Next, I determined who the Top 10 artists are by popularity.
+#Next, I determined who the Top 10 artists are by popularity so people can explore their other tracks.
 SELECT artist_name, popularity
 FROM BIT_DB.Spotifydata
 ORDER BY popularity DESC
 LIMIT 10;
 
-#I also determined the popularity of tracks from lowest to highest.
+#I also determined the popularity of tracks from lowest to highest, which can influence the listeners' song choices.
 SELECT track_name, popularity
 FROM BIT_DB.Spotifydata
 ORDER by popularity ASC;
 
-#Then, I determined which artists appeared more than once.
+#Then, I determined which artists appeared more than once to show their influence within the music industry.
 SELECT artist_name, COUNT(track_name) AS total_tracks
 FROM BIT_DB.Spotifydata
 GROUP BY artist_name
 HAVING total_tracks > 1
 ORDER BY total_tracks DESC;
 
-#I also determined the top 5 most danceable songs.
+#I also determined the top 5 most danceable songs for those who want to dance, or have an upcoming party.
 SELECT track_name, danceability
 FROM BIT_DB.Spotifydata
 ORDER BY danceability DESC
 LIMIT 5;
 
-#I then determined which songs have high energy and valence.
+#For an extra boost of serotonin, I determined which songs have high energy and valence.
 SELECT track_name, energy, valence
 FROM BIT_DB.Spotifydata
 WHERE energy >= 0.700 AND valence >= 0.700;
