@@ -1,0 +1,74 @@
+#This project is based on a dataset called chinook, which represents a digital media store and includes tables for artists, albums, media tracks, invoices, and customers.
+#Below, I performed analytics on the data using SQL.
+
+#Show the employees who are Sales Agents.
+SELECT *
+FROM chinook.employees
+WHERE Title = "Sales Support Agent";
+
+#What are the total sales for 2010?
+SELECT SUM(Total) AS TotalSales
+FROM chinook.invoices
+WHERE InvoiceDate Between '2010-01-01' AND '2010-12-31';
+
+#Show only the Customers from Germany.
+SELECT *
+FROM chinook.customers
+WHERE Country = "Germany";
+
+#Find the Invoices of customers who are from Germany, including the customer's full name, Invoice ID, Date of the invoice, and billing country.
+SELECT cust.FirstName, cust.LastName, inv.InvoiceID, inv.InvoiceDate, inv.BillingCountry
+FROM chinook.invoices inv
+LEFT JOIN chinook.customers cust
+ON inv.CustomerId = cust.CustomerId
+WHERE inv.BillingCountry = "Germany";
+
+#Provide a query that shows the invoices associated with each sales agent. Include the Sales Agent's full name in the table.
+SELECT emp.LastName, emp.Firstname, inv.InvoiceId
+FROM chinook.Employees emp 
+JOIN chinook.Customers cust ON cust.SupportRepId = emp.EmployeeId
+JOIN chinook.Invoices Inv ON Inv.CustomerId = cust.CustomerId;
+
+#Write a query that includes the purchased track name AND artist name with each invoice line ID.
+SELECT art.name as Artist, trx.Name as Track, inv.InvoiceLineId
+FROM chinook.Invoice_items AS inv
+LEFT JOIN chinook.tracks AS trx 
+ON inv.TrackId =trx.TrackId
+INNER JOIN chinook.albums AS alb
+ON alb.AlbumID=trx.AlbumID
+LEFT JOIN chinook.artists AS art
+ON art.ArtistID=alb.ArtistID;
+
+#Which customer(s) (include first and last name) spent the most amount of money in Canada? Include the top 3.
+SELECT cust.FirstName, cust.LastName, inv.BillingCountry, SUM(inv.Total) AS TotalSpent
+FROM chinook.invoices AS inv
+JOIN chinook.customers AS cust
+ON inv.CustomerId = cust.CustomerId
+WHERE inv.BillingCountry = "Canada"
+GROUP BY FirstName, LastName
+ORDER BY TotalSpent DESC
+LIMIT 3;
+
+#Provide a query that shows the artists' names, album titles, and track names.
+SELECT art.Name AS Artist, alb.Title AS AlbumTitle, trk.Name AS Track
+FROM chinook.artists AS art
+LEFT JOIN chinook.albums AS alb
+ON art.Artistid = alb.Artistid
+JOIN chinook.tracks AS trk
+ON trk.AlbumId = alb.AlbumId
+ORDER BY Artist;
+
+#How many tracks does each album contain?
+SELECT alb.Title, COUNT(trx.Name) AS TrackCount
+FROM chinook.albums AS alb
+LEFT JOIN chinook.tracks AS trx
+ON alb.albumId = trx.albumId
+GROUP BY alb.Title
+ORDER BY TrackCount;
+
+#List the tracks with their respective media type.
+SELECT media.MediaTypeid AS ID, media.Name AS MediaName, trx.Name AS TrackName
+FROM chinook.media_types AS media
+INNER JOIN chinook.tracks AS trx
+ON media.MediaTypeid = trx.MediaTypeid
+GROUP BY TrackName;
